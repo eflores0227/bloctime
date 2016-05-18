@@ -5,11 +5,10 @@
         enabled: true,
         requireBase: false
       });
-
-    console.log("WTF")
     $stateProvider
       .state('home', {
         url: '/',
+        controller: "HomeCtrl as home",
         templateUrl: 'templates/home.html'
       });
   }
