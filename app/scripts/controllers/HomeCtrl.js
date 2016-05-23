@@ -1,10 +1,11 @@
 (function() {
-    function HomeCtrl($scope, $interval) {
-      const pomodoroTime = 3;
-      const breakTime = 2;
-      const longBreak = 10;
+    function HomeCtrl($scope, $interval, Fixtures) {
+      const pomodoroTime = 1500.00;
+      const breakTime = 300.00;
+      const longBreak = 1800.00;
       var vm = this;
       var pomodoroCounter = 3;
+      var currentInterval;
       $scope.timeLeft = pomodoroTime;
       $scope.currentMode = "Pomodoro Time"
 
@@ -38,5 +39,5 @@
     }
     angular
       .module('bloctime')
-      .controller('HomeCtrl',['$scope', '$interval', HomeCtrl]);
+      .controller('HomeCtrl',['$scope', '$interval', 'Fixtures', HomeCtrl]);
 })();
