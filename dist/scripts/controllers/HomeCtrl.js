@@ -21,10 +21,11 @@
         vm.stop();
       }
       vm.stop = function(){
+        // mySound.play();
         $interval.cancel(currentInterval)
-        $scope.$watch('vm.start', function() {
-            mySound.play();
-        })
+        // $scope.$watch('vm.start', function() {
+        //     mySound.play();
+        // })
       }
       vm.start = function(){
         currentInterval = $interval(function(){
@@ -48,9 +49,11 @@
         }, 1000)
       }
 
-      // $scope.$watch('vm.start', function() {
-      //     mySound.play();
-      // })
+      $scope.$watch('timeLeft', function(newValue, oldValue) {
+        if(newValue == 1){
+          mySound.play();
+        }
+      })
     }
     angular
       .module('bloctime')

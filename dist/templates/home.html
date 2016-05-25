@@ -1,5 +1,7 @@
-<h1>{{currentMode}}</h1>
-<h1 id="timer" >{{timeLeft | timecode}}</h1>
-  <button id="button" ng-click="home.reset()">Reset</button>
-  <button id="button" ng-click="home.start()">Start</button>
-  <button id="button" ng-click="home.stop()">Stop</button>
+<body>
+  <h1 id="currentMode">{{currentMode}}</h1>
+  <h1 id="timer" >{{timeLeft | timecode}}</h1>
+    <button id="button" ng-click="home.reset()">Reset</button>
+    <button id="button" ng-click="home.start()">Start</button>
+    <button id="button" ng-click="home.stop()">Stop</button>
+</body>
