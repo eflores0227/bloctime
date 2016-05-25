@@ -1,3 +1,4 @@
-.button {
-  text-decoration-color: green;
+button {
+  font-weight: bold;
+  color: black;
 }

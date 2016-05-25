@@ -1,11 +1,18 @@
 (function() {
     function HomeCtrl($scope, $interval, Fixtures) {
-      const pomodoroTime = 1500.00;
-      const breakTime = 300.00;
-      const longBreak = 1800.00;
+      const pomodoroTime = 2.00;
+      const breakTime = 1.00;
+      const longBreak = 1.00;
+
+
       var vm = this;
       var pomodoroCounter = 3;
       var currentInterval;
+
+      var mySound = new buzz.sound( "assets/sounds/alert.mp3", {
+          preload: true
+      });
+
       $scope.timeLeft = pomodoroTime;
       $scope.currentMode = "Pomodoro Time"
 
@@ -15,6 +22,9 @@
       }
       vm.stop = function(){
         $interval.cancel(currentInterval)
+        $scope.$watch('vm.start', function() {
+            mySound.play();
+        })
       }
       vm.start = function(){
         currentInterval = $interval(function(){
@@ -34,8 +44,13 @@
               vm.stop();
 
             }
+
         }, 1000)
       }
+
+      // $scope.$watch('vm.start', function() {
+      //     mySound.play();
+      // })
     }
     angular
       .module('bloctime')
