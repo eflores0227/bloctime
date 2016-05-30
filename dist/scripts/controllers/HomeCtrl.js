@@ -1,9 +1,26 @@
 (function() {
-    function HomeCtrl($scope, $interval, Fixtures) {
+    function HomeCtrl($scope, $interval, Fixtures, $firebaseArray) {
       const pomodoroTime = 2.00;
       const breakTime = 1.00;
       const longBreak = 1.00;
 
+      var database = firebase.database();
+      var tasksRef = database.ref("/tasks")
+      $scope.tasks = []
+      tasksRef.on('child_added', function(data) {
+        $scope.$apply(function(){
+          $scope.tasks.push(data.val());
+        })
+      });
+
+
+      $scope.addNewTask = function(){
+        $scope.tasks.push($scope.newTask)
+      }
+
+      // $scope.tasks.push({text: "fingers"})
+
+      // task.push newtasks => tasksRef.push({})
 
       var vm = this;
       var pomodoroCounter = 3;
@@ -57,5 +74,5 @@
     }
     angular
       .module('bloctime')
-      .controller('HomeCtrl',['$scope', '$interval', 'Fixtures', HomeCtrl]);
+      .controller('HomeCtrl',['$scope', '$interval', 'Fixtures', '$firebaseArray', HomeCtrl]);
 })();

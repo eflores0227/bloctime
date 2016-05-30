@@ -4,4 +4,17 @@
     <button id="button" ng-click="home.reset()">Reset</button>
     <button id="button" ng-click="home.start()">Start</button>
     <button id="button" ng-click="home.stop()">Stop</button>
+
+
+  <h1>Tasks</h1>
+    <form>
+      <input type="text" ng-model="newTask.text"></input>
+
+      <input type="submit" ng-click="addNewTask()">Add a task</input>
+    </form>
+  <ul>
+    <li ng-repeat="task in tasks track by $index">
+      {{task.text}}
+    </li>
+  </ul>
 </body>

@@ -13,6 +13,6 @@
       });
   }
     angular
-      .module('bloctime', ['ui.router'])
+      .module('bloctime', ['ui.router', "firebase"])
       .config(config);
 })();
