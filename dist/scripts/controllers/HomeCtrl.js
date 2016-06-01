@@ -6,16 +6,23 @@
 
       var database = firebase.database();
       var tasksRef = database.ref("/tasks")
+
+
+      tasksRef.on('value', function(){
+        $scope.$apply($scope.tasks)
+        tasksRef.off('value');
+      });
+
+
       $scope.tasks = []
       tasksRef.on('child_added', function(data) {
-        $scope.$apply(function(){
           $scope.tasks.push(data.val());
-        })
       });
 
 
       $scope.addNewTask = function(){
-        $scope.tasks.push($scope.newTask)
+        tasksRef.push($scope.newTask)
+        $scope.newTask = {};
       }
 
       // $scope.tasks.push({text: "fingers"})
