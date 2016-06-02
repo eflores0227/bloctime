@@ -11,10 +11,12 @@
       <input type="text" ng-model="newTask.text"></input>
 
       <input type="submit" ng-click="addNewTask()">Add a task</input>
+
     </form>
   <ul>
-    <li ng-repeat="task in tasks track by $index">
-      {{task.text}}
+    <li ng-repeat="task in tasks | orderBy:'-val().createdAt'">
+      {{task.val().text }}
+      <input type="checkbox" ng-click="completeTask(task)" ng-checked="task.val().completed"/>
     </li>
   </ul>
 </body>

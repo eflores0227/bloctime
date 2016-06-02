@@ -7,23 +7,39 @@
       var database = firebase.database();
       var tasksRef = database.ref("/tasks")
 
-
       tasksRef.on('value', function(){
         $scope.$apply($scope.tasks)
         tasksRef.off('value');
       });
 
 
+
+
       $scope.tasks = []
       tasksRef.on('child_added', function(data) {
-          $scope.tasks.push(data.val());
+          $scope.tasks.push(data);
       });
 
 
       $scope.addNewTask = function(){
+        $scope.newTask.createdAt = Date.now();
         tasksRef.push($scope.newTask)
         $scope.newTask = {};
+      };
+
+      $scope.completeTask = function(task){
+        // tell db taks is done
+        // console.log(task.val())
+
+        taskRef = tasksRef.child(task.key)
+        data = task.val();
+        data.completed = true;
+
+        taskRef.set(data);
+
+
       }
+
 
       // $scope.tasks.push({text: "fingers"})
 
